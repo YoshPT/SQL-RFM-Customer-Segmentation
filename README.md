@@ -59,4 +59,4 @@ Using the segmented data, this project answers 5 critical business questions:
 4. Run `RFM Segmentation.sql` from top to bottom.
 
 ---
-*Developed by [Your Name]* | *[LinkedIn Profile Link]*
+*Developed by [Poomrat Thanapasee]* | *[[LinkedIn Profile Link](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)]*
