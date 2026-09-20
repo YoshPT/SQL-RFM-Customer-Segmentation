@@ -1,65 +1,62 @@
-📊 Customer Segmentation using RFM Analysis (SQL)
+# 📊 Customer Segmentation using RFM Analysis (SQL)
 
-📝 Project Overview
+> **An advanced SQL project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model.**
 
-The primary objective of this project is to analyze and segment customers based on their historical purchasing behavior using RFM (Recency, Frequency, Monetary) Analysis. This segmentation model empowers marketing and sales teams to understand customer behavior and design highly targeted, data-driven campaigns.
+---
 
-💼 Business Impact
+## 🎯 Project Objective
+To segment customers based on their purchasing behavior. This allows the marketing and sales teams to tailor targeted campaigns, optimize retention strategies, and maximize overall revenue.
 
-By effectively segmenting the customer base, this project provides the following business value:
+## 🛠️ Technical Skills Demonstrated
+* **Database Management:** Schema Design, Indexing for Performance Optimization
+* **Data Wrangling:** Type Casting, String Manipulation, Handling Missing Values
+* **Advanced SQL:** Window Functions (`NTILE`), Common Table Expressions (CTEs), Subqueries
+* **Business Intelligence:** Data Aggregation, Customer Cohort Segmentation
 
-Targeted Marketing: Identified "Champions" (VIP customers) to offer exclusive cross-sell and up-sell promotions, ultimately increasing the Average Order Value (AOV).
+---
 
-Churn Prevention: Discovered "At Risk" customers (formerly high-value buyers whose engagement has dropped) to launch immediate win-back campaigns before losing them to competitors.
+## 📂 Project Structure & Workflow
 
-Resource Optimization: Improved marketing budget allocation by focusing resources on key revenue-generating segments rather than utilizing a "spray and pray" approach.
+### 1. Data Cleaning & Preprocessing
+* Converted raw string data (e.g., `PPU`, `Amount`) to proper `INT` formats.
+* Standardized date strings into native SQL `DATE` format.
+* Applied `CREATE INDEX` on key columns (`Customer ID`, `Date`, `Transaction ID`) to improve query execution time.
 
-🛠️ Tech Stack & SQL Skills Used
+### 2. RFM Modeling Engine
+Calculated RFM metrics using **CTEs** and assigned scores (1-5) using `NTILE()` window functions:
+* **Recency (R):** Days since the last purchase (reversed scoring: 5 is best).
+* **Frequency (F):** Total number of transactions.
+* **Monetary (M):** Total amount spent.
 
-Database: MySQL (Update this if you used PostgreSQL, SQL Server, etc.)
+### 3. Customer Segments
+Customers were categorized into strategic groups based on their RFM scores:
 
-Key SQL Techniques Demonstrated:
+| Segment | Description | Actionable Strategy |
+| :--- | :--- | :--- |
+| 🏆 **Champions** | Bought recently, buy often, and spend the most. | Reward them, offer early access to new products. |
+| 🤝 **Loyal Customers** | Spend good money and purchase regularly. | Upsell higher-value products, ask for reviews. |
+| 👋 **New Customers** | Bought recently but not frequently yet. | Provide onboarding support, offer 2nd-purchase discounts. |
+| ⚠️ **At Risk** | Spent big and often, but haven't returned lately. | Send personalized "We miss you" win-back offers. |
+| 💤 **Lost / Hibernating**| Lowest recency, frequency, and monetary scores. | Do not spend high marketing budget here. |
 
-Data Cleaning & Preprocessing (REPLACE, STR_TO_DATE, ALTER TABLE)
+---
 
-Common Table Expressions (CTEs) & Views (CREATE OR REPLACE VIEW)
+## 💡 Key Business Insights
 
-Window Functions (NTILE()) for dynamic scoring
+Using the segmented data, this project answers 5 critical business questions:
+1. **Win-back Campaign:** Identified the top 10 highest-spending "At Risk" customers for the sales team to contact directly.
+2. **Product Preference:** Discovered which product categories our "Champions" buy the most to create bundle promotions.
+3. **Regional Churn Analysis:** Pinpointed geographic regions with the highest number of "Lost" customers to investigate operational issues.
+4. **Average Order Value (AOV):** Compared the AOV of Champions vs. Regular Customers to adjust pricing and discount strategies.
+5. **Peak Acquisition Season:** Analyzed the months that brought in the most "New Customers" to optimize future ad spend.
 
-Aggregations (COUNT, SUM, DATEDIFF)
+---
 
-Data Joins & Grouping
+## 🚀 How to Run the Code
+1. Clone this repository to your local machine.
+2. Create the `Customer_DB` table using the provided DDL.
+3. Import your raw CSV data into the table.
+4. Run `RFM Segmentation.sql` from top to bottom.
 
-🚀 Key Business Questions Answered
-
-This project utilizes SQL to extract actionable insights by answering 5 critical business questions:
-
-Win-back Campaign: Who are the top 10 "At Risk" customers with the highest spending history? (Action: Forward list to the sales team for personalized follow-ups).
-
-Loyalty Preference: Which product categories do our "Champions" purchase the most?
-
-Regional Churn Analysis: In which geographical regions are our "Lost / Hibernating" customers mostly concentrated?
-
-Average Order Value (AOV): How significantly does the AOV of "Champions" differ from that of "Regular Customers"?
-
-Peak Season for Acquisition: During which months do we acquire the most "New Customers"?
-
-Note: The specific SQL queries and their results can be found in the provided .sql file.
-
-📁 Repository Structure
-
-RFM Segmentation.sql: The complete SQL script encompassing everything from Database Creation and Data Cleaning to the final Business Analytics Queries.
-
-[Your_Dataset_Name].csv: The dataset used for this analysis. (Optional: Include if you are allowed to share the data).
-
-⚙️ How to Run
-
-Import the raw Customer_DB data into your local database.
-
-Open and run the RFM Segmentation.sql script sequentially (from Section 0 to 5).
-
-The script will automatically handle data cleaning, build performance indexes, and generate the vw_customer_segmentation view.
-
-Execute the queries in Section 5 to explore the business insights.
-
-Created by [Your Name] - Let's connect on LinkedIn!
+---
+*Developed by [Your Name]* | *[LinkedIn Profile Link]*
