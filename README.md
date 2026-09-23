@@ -11,7 +11,7 @@ To segment customers based on their purchasing behavior. This allows the marketi
 
 ## 📊 Data Source
 The dataset used in this project is publicly available on Kaggle. It contains transactional records including customer IDs, purchase dates, product categories, and transaction amounts.
-* **Source:** [Customer_DB]([ใส่ลิงก์ Kaggle ของคุณตรงนี้](https://www.kaggle.com/datasets/charmmyaeaung/raw-sales-dataset-for-rfm-customer-segmentation?select=raw_rfm_sales_transactions_%28V2%29.csv))
+* **Source:** [Customer_DB][(https://www.kaggle.com/datasets/charmmyaeaung/raw-sales-dataset-for-rfm-customer-segmentation?select=raw_rfm_sales_transactions_%28V2%29.csv)]
 
 ---
 
