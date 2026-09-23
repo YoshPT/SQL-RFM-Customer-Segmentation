@@ -7,6 +7,14 @@
 ## 🎯 Project Objective
 To segment customers based on their purchasing behavior. This allows the marketing and sales teams to tailor targeted campaigns, optimize retention strategies, and maximize overall revenue.
 
+---
+
+## 📊 Data Source
+The dataset used in this project is publicly available on Kaggle. It contains transactional records including customer IDs, purchase dates, product categories, and transaction amounts.
+* **Source:** [Customer_DB]([ใส่ลิงก์ Kaggle ของคุณตรงนี้](https://www.kaggle.com/datasets/charmmyaeaung/raw-sales-dataset-for-rfm-customer-segmentation?select=raw_rfm_sales_transactions_%28V2%29.csv))
+
+---
+
 ## 🛠️ Technical Skills Demonstrated
 * **Database Management:** Schema Design, Indexing for Performance Optimization
 * **Data Wrangling:** Type Casting, String Manipulation, Handling Missing Values
