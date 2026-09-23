@@ -61,9 +61,10 @@ Using the segmented data, this project answers 5 critical business questions:
 
 ## 🚀 How to Run the Code
 1. Clone this repository to your local machine.
-2. Create the `Customer_DB` table using the provided DDL.
-3. Import your raw CSV data into the table.
-4. Run `RFM Segmentation.sql` from top to bottom.
+2. Run `01_schema_and_setup.sql` (Section 0) to create the empty `Customer_DB` table.
+3. Download the dataset from Kaggle, rename it to `Customer_DB.csv`, and import it into the table.
+4. Run the rest of `01_schema_and_setup.sql` to clean the data and create indexes.
+5. Run `02_rfm_analysis_and_insights.sql` to execute the RFM model and view business insights.
 
 ---
 *Developed by [Poomrat Thanapasee]* | *[[LinkedIn Profile Link](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)]*
