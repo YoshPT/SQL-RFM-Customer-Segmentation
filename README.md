@@ -67,4 +67,4 @@ Using the segmented data, this project answers 5 critical business questions:
 5. Run `02_rfm_analysis_and_insights.sql` to execute the RFM model and view business insights.
 
 ---
-*Developed by [Poomrat Thanapasee]* | *[[LinkedIn Profile Link](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)]*
+*Created by Poomrat Thanapasee | Connect with me on [LinkedIn](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)*
