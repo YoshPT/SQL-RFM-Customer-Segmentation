@@ -1,7 +1,7 @@
 -- ==========================================
 -- 0. SCHEMA DESIGN & TABLE CREATION
 -- ==========================================
-
+-- ⚠️ INSTRUCTION: Please highlight and run this block first to create the table structure.
 CREATE TABLE Customer_DB (
     `Transaction ID` VARCHAR(100) PRIMARY KEY,
     Date VARCHAR(20),
