@@ -25,18 +25,17 @@ The dataset used in this project is publicly available on Kaggle. It contains tr
 
 ## 📂 Project Structure & Workflow
 
-### 1. Data Cleaning & Preprocessing
+### 📄 `01_schema_and_setup.sql` (Data Cleaning & Preprocessing)
+* Created the database schema and applied `CREATE INDEX` on key columns to improve query execution time.
 * Converted raw string data (e.g., `PPU`, `Amount`) to proper `INT` formats.
 * Standardized date strings into native SQL `DATE` format.
-* Applied `CREATE INDEX` on key columns (`Customer ID`, `Date`, `Transaction ID`) to improve query execution time.
 
-### 2. RFM Modeling Engine
+### 📄 `02_rfm_analysis_and_insights.sql` (RFM Modeling & Insights)
 Calculated RFM metrics using **CTEs** and assigned scores (1-5) using `NTILE()` window functions:
 * **Recency (R):** Days since the last purchase (reversed scoring: 5 is best).
 * **Frequency (F):** Total number of transactions.
 * **Monetary (M):** Total amount spent.
 
-### 3. Customer Segments
 Customers were categorized into strategic groups based on their RFM scores:
 
 | Segment | Description | Actionable Strategy |
