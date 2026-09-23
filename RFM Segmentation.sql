@@ -1,7 +1,7 @@
 -- ==========================================
 -- 0. SCHEMA DESIGN & TABLE CREATION
 -- ==========================================
--- ⚠️ INSTRUCTION: Please highlight and run this block first to create the table structure.
+-- ⚠️ สิ่งที่ต้องทำ: คลุมดำและรันโค้ดส่วนนี้ก่อน เพื่อสร้างตารางเตรียมไว้สำหรับ Import ไฟล์ CSV
 CREATE TABLE Customer_DB (
     `Transaction ID` VARCHAR(100) PRIMARY KEY,
     Date VARCHAR(20),
