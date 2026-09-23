@@ -61,8 +61,8 @@ Using the segmented data, this project answers 5 critical business questions:
 
 ## 🚀 How to Run the Code
 1. Clone this repository to your local machine.
-2. Run `01_schema_and_setup.sql` (Section 0) to create the empty `Customer_DB` table.
-3. Download the dataset from Kaggle, rename it to `Customer_DB.csv`, and import it into the table.
+2. Open `01_schema_and_setup.sql` and run only the `CREATE TABLE` block first to create an empty table.
+3. Import the provided `raw_rfm_sales_transactions_(V2).csv` dataset into the `Customer_DB` table.
 4. Run the rest of `01_schema_and_setup.sql` to clean the data and create indexes.
 5. Run `02_rfm_analysis_and_insights.sql` to execute the RFM model and view business insights.
 
