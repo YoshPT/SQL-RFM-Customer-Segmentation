@@ -1,4 +1,4 @@
--- ==========================================
+- ==========================================
 -- 0. SCHEMA DESIGN & TABLE CREATION
 -- ==========================================
 -- ⚠️ สิ่งที่ต้องทำ: คลุมดำและรันโค้ดส่วนนี้ก่อน เพื่อสร้างตารางเตรียมไว้สำหรับ Import ไฟล์ CSV
@@ -63,9 +63,10 @@ CREATE TABLE Customer_RFM.Customer_Clean (
 
 -- นำข้อมูลจากตาราง Raw เข้าตาราง Clean พร้อมแปลงข้อมูล
 INSERT INTO Customer_RFM.Customer_Clean
+    (transaction_id, order_date, product_id, product_name, product_category,
+     quantity, price_per_unit, amount, customer_id, region)
 SELECT
-    `Transaction ID`,
-    -- แปลงวันที่จาก 01-01-2025 เป็นฟอร์แมตมาตรฐานของระบบ (YYYY-MM-DD)
+    `Transaction ID`,    -- แปลงวันที่จาก 01-01-2025 เป็นฟอร์แมตมาตรฐานของระบบ (YYYY-MM-DD)
     STR_TO_DATE(Date, '%d-%m-%Y'),
     `Product ID`,
     `Product Name`,
@@ -116,6 +117,8 @@ SHOW INDEX FROM Customer_RFM.Customer_Clean;
 
 -- ตรวจสอบว่า Query RFM ใช้ Index นี้จริงหรือไม่
 -- คอลัมน์ Extra ขึ้น "Using index" = Covering Index
+-- หมายเหตุ: นี่คือรูปแบบ query แบบย่อ (ใช้ COUNT(*)) เพื่อตรวจการใช้ Index
+-- ส่วน VIEW ใช้ COUNT(DISTINCT transaction_id) ซึ่งใช้ Index ตัวเดียวกัน
 EXPLAIN
 SELECT customer_id,
        MAX(order_date) AS last_date,
