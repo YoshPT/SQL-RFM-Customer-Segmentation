@@ -2,6 +2,8 @@
 -- 0. SCHEMA DESIGN & TABLE CREATION
 -- ==========================================
 -- ⚠️ สิ่งที่ต้องทำ: คลุมดำและรันโค้ดส่วนนี้ก่อน เพื่อสร้างตารางเตรียมไว้สำหรับ Import ไฟล์ CSV
+CREATE DATABASE IF NOT EXISTS Customer_RFM;
+USE Customer_RFM;
 CREATE TABLE Customer_DB (
     `Transaction ID` VARCHAR(100) PRIMARY KEY,
     Date VARCHAR(20),
