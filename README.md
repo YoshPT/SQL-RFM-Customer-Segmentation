@@ -60,6 +60,18 @@ Using the segmented data, this project answers 5 critical business questions:
 5. **Peak Acquisition Season:** Analyzed the months that brought in the most "New Customers" to optimize future ad spend.
 
 ---
+## ⚠️ Limitations & Future Improvements
+
+* **Small, single-year dataset:** 2,000 transactions from 812 customers (Jan–Dec 2025). Segment sizes are modest, seasonality can't be separated from trend, and the covering index shows no measurable speedup at this size. It is designed to support RFM aggregation as the data grows.
+* **`NTILE` and tied values:** `NTILE(5)` forces equal-sized buckets, but Frequency has many ties (292 of 812 customers bought only once, and 207 bought twice). Customers with identical purchase counts can therefore land in different F scores, so the segment labels may shift slightly between runs. Fixed thresholds (e.g., 1, 2, 3, 4, 5+ purchases) would be more stable.
+* **Rule-based segments, not validated:** The segment rules are heuristic and haven't been tested against real outcomes. A natural next step is an A/B test of the win-back campaign on "At Risk" customers.
+* **Some segments ignore Monetary:** "New", "At Risk", and "Lost / Hibernating" use only R and F, so a high-spending customer can still fall into one of them. "Regular Customers" is a catch-all for everyone not matched by the other rules.
+* **Recency is relative to the dataset:** It is measured from the latest transaction date in the data, not today's date.
+* **"Lost" is a proxy for churn:** Low recency and frequency suggest, but do not confirm, that a customer has churned. Regional patterns (insight 3) are hypotheses to investigate, not proven causes.
+* **Revenue, not profit:** The data has no cost or margin, so segment value is based on sales amount only.
+* **Future improvements:** Fixed-threshold scoring for Frequency, a Power BI/Tableau dashboard for the segments, and customer lifetime value using profit data.
+
+---
 
 ## 🚀 How to Run the Code
 1. Clone this repository to your local machine. Requires **MySQL 8.0+** (CTEs and window functions).
