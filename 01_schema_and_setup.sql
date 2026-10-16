@@ -34,6 +34,10 @@ SELECT
     SUM(CASE WHEN Region IS NULL THEN 1 ELSE 0 END) AS missing_region
 FROM Customer_RFM.Customer_DB;
 
+-- ตรวจสอบจำนวนรายการทั้งหมดก่อน Cleaning
+SELECT COUNT(*) AS total_rows
+FROM Customer_RFM.Customer_DB;
+
 -- ==========================================
 -- 2. DATA CLEANING & PREPROCESSING
 -- ==========================================
@@ -70,6 +74,23 @@ DESCRIBE Customer_RFM.Customer_DB;
 SELECT * 
 FROM Customer_RFM.Customer_DB 
 LIMIT 10;
+
+-- ตรวจสอบข้อมูลที่อาจผิดปกติหลัง Cleaning
+SELECT *
+FROM Customer_RFM.Customer_DB
+WHERE Date IS NULL
+   OR Amount IS NULL
+   OR Quantity IS NULL
+   OR Amount < 0
+   OR Quantity <= 0;
+
+-- ตรวจสอบ Transaction ID ซ้ำ
+SELECT
+    `Transaction ID`,
+    COUNT(*) AS duplicate_count
+FROM Customer_RFM.Customer_DB
+GROUP BY `Transaction ID`
+HAVING COUNT(*) > 1;
 
 -- ==========================================
 -- INDEXING FOR PERFORMANCE OPTIMIZATION
