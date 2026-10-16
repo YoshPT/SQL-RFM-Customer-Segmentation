@@ -1,7 +1,7 @@
 -- ==========================================
 -- 5. FEATURE ENGINEERING & RFM MODELING
 -- ==========================================
--- (คำนวณค่าตัวแปรใหม่, ให้คะแนน NTILE, และจัดกลุ่ม Segment)
+-- (คำนวณค่าตัวแปรใหม่, ให้คะแนน R/F/M, และจัดกลุ่ม Segment)
 CREATE OR REPLACE VIEW Customer_RFM.vw_customer_segmentation AS
 WITH rfm_raw AS (
     -- ดึงค่าดิบและคำนวณวันล่าสุด, จำนวนครั้ง, และยอดใช้จ่ายของลูกค้าแต่ละคน
@@ -14,7 +14,7 @@ WITH rfm_raw AS (
     GROUP BY customer_id
 ),
 rfm_scoring AS (
-    -- แปลงค่าดิบให้เป็นคะแนน 1-5 ด้วย Window Function (NTILE)
+    -- แปลงค่าดิบให้เป็นคะแนน 1-5 (R, M ใช้ NTILE / F ใช้เกณฑ์ตายตัวตามจำนวนครั้งที่ซื้อ)
     SELECT 
         customer_id,
         Recency,
@@ -23,8 +23,16 @@ rfm_scoring AS (
         -- Recency: เรียงวันจากน้อยไปมาก แล้วลบด้วย 6 เพื่อกลับค่า (ซื้อล่าสุดได้คะแนน 5)
         6 - NTILE(5) OVER (ORDER BY Recency ASC) AS R_Score,
         
-        -- Frequency & Monetary: ยิ่งเยอะ คะแนนยิ่งสูง (เรียงจากน้อยไปมาก)
-        NTILE(5) OVER (ORDER BY Frequency ASC) AS F_Score,
+        -- Frequency: ใช้เกณฑ์ตายตัว เพราะลูกค้าซื้อครั้งเดียวมีจำนวนมาก (NTILE จะแบ่งคนที่ซื้อเท่ากันไปคนละกลุ่ม)
+        CASE
+            WHEN Frequency >= 5 THEN 5
+            WHEN Frequency = 4  THEN 4
+            WHEN Frequency = 3  THEN 3
+            WHEN Frequency = 2  THEN 2
+            ELSE 1
+        END AS F_Score,
+        
+        -- Monetary: ยิ่งเยอะ คะแนนยิ่งสูง (เรียงจากน้อยไปมาก)
         NTILE(5) OVER (ORDER BY Monetary ASC) AS M_Score
     FROM rfm_raw
 )
@@ -70,7 +78,7 @@ ORDER BY Total_Revenue DESC;
 -- 6. BUSINESS INSIGHTS & ANALYTICAL QUERIES
 -- ==========================================
 -- 6.1) แคมเปญดึงลูกค้าเก่ากลับมา (Win-back Campaign)
--- คำถาม: ลูกค้ากลุ่ม "At Risk" (เคยซื้อบ่อย ยอดสูง แต่ช่วงหลังหายไป) ที่มียอดใช้จ่ายสูงสุด 10 อันดับแรกคือใคร?
+-- คำถาม: ลูกค้ากลุ่ม "At Risk" (เคยซื้อบ่อย แต่ช่วงหลังหายไป) ที่มียอดใช้จ่ายสูงสุด 10 อันดับแรกคือใคร?
 -- การนำไปใช้: ส่งรายชื่อให้ทีมเซลส์เพื่อโทรเสนอโปรโมชันพิเศษ หรือส่ง Email Marketing ดึงตัวกลับมาด่วน
 SELECT 
     customer_id, 
