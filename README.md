@@ -41,12 +41,12 @@ Customers were categorized into strategic groups based on their RFM scores:
 
 | Segment | Description | Actionable Strategy |
 | :--- | :--- | :--- |
-| 🏆 **Champions** | Bought recently, buy often, and spend the most. | Reward them, offer early access to new products. |
-| 🤝 **Loyal Customers** | Spend good money and purchase regularly. | Upsell higher-value products, ask for reviews. |
-| 👋 **New Customers** | Bought recently but not frequently yet. | Provide onboarding support, offer 2nd-purchase discounts. |
-| ⚠️ **At Risk** | Purchased often (F ≥ 4) but haven't returned lately (R ≤ 2). | Send personalized "We miss you" win-back offers. |
-| 💤 **Lost / Hibernating**| Haven't purchased recently and bought rarely (R ≤ 2, F ≤ 2). | Do not spend high marketing budget here. |
-| 📦 **Regular Customers** | All remaining customers who don't fit the segments above. | Nurture with standard promotions to move them up. |
+| 🏆 **Champions** | Bought very recently, buy often, and spend a lot (R = 5, F ≥ 4, M ≥ 4). | Reward them, offer early access to new products. |
+| 🤝 **Loyal Customers** | Bought fairly recently, purchase regularly, and spend good money (R = 3–4, F ≥ 4, M ≥ 4). | Upsell higher-value products, ask for reviews. |
+| 👋 **New Customers** | Bought recently but not frequently yet (R ≥ 4, F ≤ 2). | Provide onboarding support, offer 2nd-purchase discounts. |
+| ⚠️ **At Risk** | Purchased often but haven't returned lately (R ≤ 2, F ≥ 4). | Send personalized "We miss you" win-back offers. |
+| 💤 **Lost / Hibernating** | Haven't purchased recently and bought rarely (R ≤ 2, F ≤ 2). | Do not spend high marketing budget here. |
+| 📦 **Regular Customers** | All remaining customers not matched above (e.g., mid-range frequency, F = 3). | Nurture with standard promotions to move them up. |
 
 ---
 
