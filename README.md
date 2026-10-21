@@ -80,13 +80,14 @@ Using the segmented data, this project answers 5 critical business questions:
 * **Small, single-year dataset:** 2,000 transactions from 812 customers (Jan–Dec 2025). Segment sizes are modest, seasonality can't be separated from trend, and the covering index shows no measurable speedup at this size. It is designed to support RFM aggregation as the data grows.
 * **Tied values affect scoring:** R and M use `CUME_DIST()`, so customers with identical values always share the same score. Recency is measured in whole days, so ties are common and score groups are not exactly 20% each. Frequency uses fixed thresholds for the same reason (292 of 812 customers bought only once, and 207 bought twice), which makes F = 1 and F = 2 very large groups.
 * **Rule-based segments, not validated:** The segment rules are heuristic and haven't been tested against real outcomes. A natural next step is an A/B test of the win-back campaign on "At Risk" customers.
-* **"Regular Customers"** is a catch-all for everyone not matched by the other rules and is the largest segment (about 38% of customers). It mixes mid-recency customers (R = 3) and recent repeat buyers (F = 2–3), so it should be split into finer segments.
+* **Some segments ignore Monetary:** "New Customers" and "Lost / Hibernating" use only R and F, so a high-spending customer can still fall into one of them.
+* **"Regular Customers" is a large catch-all:** It holds everyone not matched by the other rules and is the largest segment (about 38% of customers). It mixes mid-recency customers (R = 3) and recent repeat buyers (F = 2–3), so it should be split into finer segments.
 * **Recency is relative to the dataset:** It is measured from the latest transaction date in the data, not today's date.
 * **"Lost" is a proxy for churn:** Low recency and frequency suggest, but do not confirm, that a customer has churned. Regional patterns (insight 3) are hypotheses to investigate, not proven causes.
 * **Acquisition-by-month caveats:** January may look inflated because customers who bought before 2025 are counted as "first-time" buyers. With a finite customer base, first-time buyers also tend to decline over time naturally, so monthly differences are not proof of seasonality.
 * **Revenue, not profit:** The data has no cost or margin, so segment value is based on sales amount only.
 * **Large orders dominate revenue:** Order values are highly skewed (median 7.75M vs. max 600M), so a few large accounts drive revenue shares and the win-back ranking. Rank-based scoring (`CUME_DIST`) limits their effect on segment assignment, but revenue figures should be read with this in mind.
-* * **Future improvements:** Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention), a Power BI/Tableau dashboard for the segments, and customer lifetime value using profit data.
+* **Future improvements:** Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention), a Power BI/Tableau dashboard for the segments, and customer lifetime value using profit data.
 
 
 ---
