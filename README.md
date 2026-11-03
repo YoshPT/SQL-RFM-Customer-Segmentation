@@ -151,13 +151,5 @@ Segmentation then answers five business questions:
 4. **Build the clean table:** run the rest of `01_schema_and_setup.sql` to build `Customer_Clean`, validate it, and create the index. The raw table is never modified.
 5. **Run the analysis:** run `02_rfm_analysis_and_insights.sql` to build the RFM view and view business insights.
 
-> [!TIP]
-> **Re-running is safe:**
-> - Step 4 can be repeated after first running the command below (this also drops its index).
-> - The view in step 5 uses `CREATE OR REPLACE`, so `02_rfm_analysis_and_insights.sql` can be re-run as is.
->
-> ```sql
-> DROP TABLE Customer_RFM.Customer_Clean;
-> ```
 ---
 *Created by Poomrat Thanapasee | Connect with me on [LinkedIn](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)*
