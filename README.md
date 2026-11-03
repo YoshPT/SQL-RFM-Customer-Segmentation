@@ -52,22 +52,21 @@ Customers were categorized into strategic groups based on their RFM scores:
 
 ## 💡 Key Business Insights
 
-Using the segmented data, this project answers 5 critical business questions:
-1. **Win-back Campaign:** Identified the top 10 highest-spending "At Risk" customers for the sales team to contact directly.
-2. **Product Preference:** Discovered which product categories our "Champions" buy the most to create bundle promotions.
-3. **Regional Churn Analysis:** Pinpointed geographic regions with the highest share of "Lost" customers to investigate operational issues.
-4. **Average Order Value (AOV):** Compared the AOV of Champions vs. Regular Customers to adjust pricing and discount strategies.
-5. **Customer Acquisition by Month:** Counted first-time buyers per month to guide ad spend and stock planning (see the caveats below).
+**Champions and Loyal customers make up just 15.0% of customers (122) but generate 69.8% of revenue.** Segmentation then answers five business questions:
 
-### 📈 Results Snapshot
-*(Amounts are in the dataset's currency units; the currency is not specified.)*
+| # | Question | Finding | Recommended Action |
+|---|----------|---------|--------------------|
+| 1 | Who should sales contact first? | 60 customers are “At Risk”, and the top 3 accounts make up ~54% of the segment’s revenue | Personal outreach to Customer-180, Customer-074, Customer-663 |
+| 2 | What do Champions buy? | Electronics drives 68.2% of Champions' revenue, while Office Supplies is 20.1% of their orders but only 2.1% of revenue | Bundle Office Supplies as an add-on |
+| 3 | Where are we losing customers? | "Lost" share is highest in Taunggyi (40.3%), Naypyitaw (39.7%), Bago (37.4%) vs. Yangon (25.5%), Mandalay (26.8%) | Investigate operations in the high-churn regions |
+| 4 | Do Champions spend more per order? | AOV is ~4.1x that of Regular customers (51.1M vs 12.4M) | Review pricing and discount strategy |
+| 5 | When do new customers arrive? | 20.6% first purchased in January; 57.8% by end of April | Read with caution (see Caveats) |
 
-* **Revenue concentration:** Champions and Loyal customers (122 customers, 15.0%) generate 69.8% of revenue.
-* **Win-back (insight 1):** 60 customers are "At Risk". The top three accounts (Customer-180: 1.08B over 9 orders, Customer-074: 1.03B over 3 orders, Customer-663: 0.40B over 5 orders) make up about 54% of this segment's revenue, so they warrant personal outreach.
-* **Product preference (insight 2):** Champions' revenue comes from Electronics (68.2%), Furniture (29.7%), and Office Supplies (2.1%). Office Supplies is 20.1% of their orders but only 2.1% of revenue, which makes it a natural add-on for bundles.
-* **Regional churn (insight 3):** Taunggyi (40.3%), Naypyitaw (39.7%), and Bago (37.4%) have a higher share of "Lost" customers than Mandalay (26.8%) and Yangon (25.5%).
-* **AOV (insight 4):** Champions' average order value is about 4.1x that of Regular customers (51.1M vs 12.4M).
-* **Acquisition (insight 5):** 167 customers (20.6%) first purchased in January, then 96–107 per month in February–April, falling to 25–29 in November–December. 57.8% had made their first purchase by the end of April.
+*Amounts are in the dataset's currency units; the currency is not specified.*
+
+### ⚠️ Caveats
+- **First-purchase trend (insight 5):** The drop in new customers toward the end of the year likely reflects the dataset's structure (most customers had already made their first purchase) rather than a real business slowdown.
+- **Practice dataset:** The data is published for learning purposes, so these results demonstrate the method rather than serve as business conclusions.
 
 ## ⚠️ Limitations & Future Improvements
 
