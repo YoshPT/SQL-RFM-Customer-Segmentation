@@ -60,7 +60,7 @@ Customers were categorized into strategic groups based on their RFM scores:
 | 2 | What do Champions buy? | Electronics drives 68.2% of Champions' revenue, while Office Supplies is 20.1% of their orders but only 2.1% of revenue | Bundle Office Supplies as an add-on |
 | 3 | Where are we losing customers? | "Lost" share is highest in Taunggyi (40.3%), Naypyitaw (39.7%), Bago (37.4%) vs. Yangon (25.5%), Mandalay (26.8%) | Investigate operations in the high-churn regions |
 | 4 | Do Champions spend more per order? | AOV is ~4.1x that of Regular customers (51.1M vs 12.4M) | Review pricing and discount strategy |
-| 5 | When do new customers arrive? | 20.6% first purchased in January; 57.8% by end of April | Read with caution (see Caveats) |
+| 5 | When do new customers arrive? | 20.6% of customers first purchased in January, and 57.8% had by the end of April | Read with caution (see Caveats) |
 
 *Amounts are in the dataset's currency units; the currency is not specified.*
 
