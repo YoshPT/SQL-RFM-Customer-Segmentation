@@ -10,7 +10,7 @@ To segment customers based on their purchasing behavior. This allows the marketi
 ---
 
 ## 💡 Background
-With a minor in Marketing, I’ve worked extensively with the STP framework (Segmentation, Targeting, Positioning), where customers are typically segmented using demographic, psychographic, or survey-based approaches. This project explores the data-driven side of the same idea: using RFM analysis in SQL to build behavioral segments directly from real transaction data, then translating them into actionable marketing strategies.
+With a minor in Marketing, I’ve built brand marketing plans and STP (Segmentation, Targeting, Positioning) analyses as academic coursework. This project applies the same segmentation idea with real data: using SQL to build behavioral segments through RFM analysis.
 
 ---
 
