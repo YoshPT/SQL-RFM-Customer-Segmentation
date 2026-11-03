@@ -2,33 +2,27 @@
 
 > **An advanced SQL project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model.**
 
----
 
 ## 🎯 Project Objective
 To segment customers based on their purchasing behavior. This allows the marketing and sales teams to tailor targeted campaigns, optimize retention strategies, and maximize overall revenue.
 
----
+
 
 ## 💡 Background
-With a minor in Marketing, I’ve built brand marketing plans and STP (Segmentation, Targeting, Positioning) analyses as academic coursework. This project applies the same segmentation idea with real data: using SQL to build behavioral segments through RFM analysis.
+With a minor in Marketing, I’ve built brand marketing plans and STP (Segmentation, Targeting, Positioning) analyses as academic coursework. This project applies the same segmentation idea to a raw retail transaction dataset, using SQL to clean the data and build behavioral segments through RFM analysis.
 
----
+
 
 ## 📊 Data Source
 The dataset used in this project is publicly available on Kaggle. It contains transactional records including customer IDs, purchase dates, product categories, regions, and transaction amounts.
 * **Source:** [raw_rfm_sales_transactions_(V2).csv](https://www.kaggle.com/datasets/charmmyaeaung/raw-sales-dataset-for-rfm-customer-segmentation?select=raw_rfm_sales_transactions_%28V2%29.csv)
 * **Size:** 2,000 transactions from 812 customers, covering Jan–Dec 2025.
 
----
-
 ## 🛠️ Technical Skills Demonstrated
 * **Database Management:** Schema Design, Raw-to-Clean Staging Layer, Indexing, Views
 * **Data Wrangling:** Type Casting, String Manipulation, Date Standardization, Data Validation
 * **Advanced SQL:** Window Functions (`CUME_DIST`, `SUM() OVER`), Common Table Expressions (CTEs), Subqueries
 * **Business Intelligence:** Data Aggregation, Customer Cohort Segmentation
-
-
----
 
 ## 📂 Project Structure & Workflow
 
@@ -56,8 +50,6 @@ Customers were categorized into strategic groups based on their RFM scores:
 | 💤 **Lost / Hibernating** | Haven't purchased recently and bought rarely (R ≤ 2, F ≤ 2). | Do not spend high marketing budget here. |
 | 📦 **Regular Customers** | All remaining customers not matched above (e.g., mid-recency R = 3, repeat buyers with F = 2–3 and R ≥ 4, or frequent buyers with lower spend). | Nurture with standard promotions to move them up. |
 
----
-
 ## 💡 Key Business Insights
 
 Using the segmented data, this project answers 5 critical business questions:
@@ -66,8 +58,6 @@ Using the segmented data, this project answers 5 critical business questions:
 3. **Regional Churn Analysis:** Pinpointed geographic regions with the highest share of "Lost" customers to investigate operational issues.
 4. **Average Order Value (AOV):** Compared the AOV of Champions vs. Regular Customers to adjust pricing and discount strategies.
 5. **Customer Acquisition by Month:** Counted first-time buyers per month to guide ad spend and stock planning (see the caveats below).
-
----
 
 ### 📈 Results Snapshot
 *(Amounts are in the dataset's currency units; the currency is not specified.)*
@@ -79,7 +69,6 @@ Using the segmented data, this project answers 5 critical business questions:
 * **AOV (insight 4):** Champions' average order value is about 4.1x that of Regular customers (51.1M vs 12.4M).
 * **Acquisition (insight 5):** 167 customers (20.6%) first purchased in January, then 96–107 per month in February–April, falling to 25–29 in November–December. 57.8% had made their first purchase by the end of April.
 
----
 ## ⚠️ Limitations & Future Improvements
 
 * **Small, single-year dataset:** 2,000 transactions from 812 customers (Jan–Dec 2025). Segment sizes are modest, seasonality can't be separated from trend, and the covering index shows no measurable speedup at this size. It is designed to support RFM aggregation as the data grows.
@@ -94,8 +83,6 @@ Using the segmented data, this project answers 5 critical business questions:
 * **Large orders dominate revenue:** Order values are highly skewed (median 7.75M vs. max 600M), so a few large accounts drive revenue shares and the win-back ranking. Rank-based scoring (`CUME_DIST`) limits their effect on segment assignment, but revenue figures should be read with this in mind.
 * **Future improvements:** Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention), a Power BI/Tableau dashboard for the segments, and customer lifetime value using profit data.
 
-
----
 
 ## 🚀 How to Run the Code
 1. Clone this repository to your local machine. Requires **MySQL 8.0+** (CTEs and window functions).
