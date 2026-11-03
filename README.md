@@ -9,6 +9,11 @@ To segment customers based on their purchasing behavior. This allows the marketi
 
 ---
 
+## 💡 Background
+With a minor in Marketing, I’ve worked extensively with the STP framework (Segmentation, Targeting, Positioning), where customers are typically segmented using demographic, psychographic, or survey-based approaches. This project explores the data-driven side of the same idea: using RFM analysis in SQL to build behavioral segments directly from real transaction data, then translating them into actionable marketing strategies.
+
+---
+
 ## 📊 Data Source
 The dataset used in this project is publicly available on Kaggle. It contains transactional records including customer IDs, purchase dates, product categories, regions, and transaction amounts.
 * **Source:** [raw_rfm_sales_transactions_(V2).csv](https://www.kaggle.com/datasets/charmmyaeaung/raw-sales-dataset-for-rfm-customer-segmentation?select=raw_rfm_sales_transactions_%28V2%29.csv)
