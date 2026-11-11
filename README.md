@@ -1,6 +1,6 @@
 # 📊 Customer Segmentation using RFM Analysis (SQL)
 
-> **An advanced SQL project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model.**
+> **A SQL project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model.**
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white)
 ![Model](https://img.shields.io/badge/Model-RFM%20Analysis-blueviolet)
@@ -17,6 +17,7 @@
 - [Technical Skills Demonstrated](#-technical-skills-demonstrated)
 - [Project Structure & Workflow](#-project-structure--workflow)
 - [Key Business Insights](#-key-business-insights)
+- [Applying This to Financial Services](#-applying-this-to-financial-services)
 - [Limitations & Future Improvements](#-limitations--future-improvements)
 - [How to Run the Code](#-how-to-run-the-code)
 
@@ -51,7 +52,7 @@ The dataset used in this project is publicly available on Kaggle. It contains tr
 |---|---|
 | **Database Management** | Schema Design, Raw-to-Clean Staging Layer, Indexing, Views |
 | **Data Wrangling** | Type Casting, String Manipulation, Date Standardization, Data Validation |
-| **Advanced SQL** | Window Functions (`CUME_DIST`, `SUM() OVER`), Common Table Expressions (CTEs), Subqueries |
+| **SQL** | Window Functions (`CUME_DIST`, `SUM() OVER`), Common Table Expressions (CTEs), Subqueries |
 | **Business Intelligence** | Data Aggregation, Customer Cohort Segmentation |
 
 ---
@@ -107,10 +108,28 @@ Segmentation then answers five business questions:
 | 1 | Who should sales contact first? | 60 customers are "At Risk", and the top 3 accounts make up ~54% of the segment's revenue | Personal outreach to Customer-180, Customer-074, Customer-663 |
 | 2 | What do Champions buy? | Electronics drives 68.2% of Champions' revenue, while Office Supplies is 20.1% of their orders but only 2.1% of revenue | Bundle Office Supplies as an add-on |
 | 3 | Where are we losing customers? | "Lost" share is highest in Taunggyi (40.3%), Naypyitaw (39.7%), Bago (37.4%) vs. Yangon (25.5%), Mandalay (26.8%) | Investigate operations in the high-churn regions |
-| 4 | Do Champions spend more per order? | AOV is ~4.1x that of Regular customers (51.1M vs 12.4M) | Review pricing and discount strategy |
+| 4 | Do Champions spend more per order? | AOV is ~4.1x that of Regular customers (51.1M vs 12.4M) | Test bundles and upsell offers to lift order value among Regular customers; avoid blanket discounts for Champions, who already spend more per order |
 | 5 | When do new customers arrive? | 20.6% of customers first purchased in January, and 57.8% had by the end of April | Read with caution (see [Limitations](#-limitations--future-improvements)) |
 
 *Amounts are in the dataset's currency units; the currency is not specified.*
+
+---
+
+## 🏦 Applying This to Financial Services
+
+This project uses retail data. The same framework could be adapted to a financial services setting (e.g., credit cards, loans, installment programs). This is a proposed adaptation and is not implemented in this project.
+
+| Metric | In this project (retail) | Possible version in financial services |
+|---|---|---|
+| **Recency** | Days since the last purchase | Days since the last card transaction or loan payment |
+| **Frequency** | Number of distinct transactions | Number of transactions per month, or number of active months |
+| **Monetary** | Total amount spent | Card spend, or revenue from the customer (e.g., interest and fees) |
+
+What would need to change:
+
+- **RFM describes engagement and value, not credit risk.** Delinquency, repayment history, and credit limit utilization would need to be analyzed separately, and risk should be reviewed before any campaign targets a segment.
+- **Segment actions change with the product.** For example, an "At Risk" card holder might receive a reactivation offer, while a high-value customer with rising utilization may need a different treatment.
+- **Customer data privacy.** Using personal data for marketing requires attention to consent and data protection rules (e.g., Thailand's PDPA).
 
 ---
 
@@ -133,12 +152,13 @@ Segmentation then answers five business questions:
 ### Interpretation
 
 - **"Lost" is a proxy for churn:** Low recency and frequency suggest, but do not confirm, that a customer has churned. Regional patterns (insight 3) are hypotheses to investigate, not proven causes.
+- **Regional shares can swing with small groups:** Insight 3 reports percentages of each region's customers, so a region with few customers can show a large share from just a handful of people. Read the percentages together with the customer counts.
 - **First-purchase trend (insight 5):** January may look inflated because customers who bought before 2025 are counted as first-time buyers. With a finite customer base, new buyers also decline naturally over time, so monthly differences are not proof of seasonality.
 
 ### Future improvements
 
-- Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention).
 - Build a Power BI/Tableau dashboard for the segments.
+- Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention).
 - Estimate customer lifetime value using profit data.
 
 ---
@@ -150,6 +170,7 @@ Segmentation then answers five business questions:
 3. **Import the data:** import `raw_rfm_sales_transactions_(V2).csv` into `Customer_DB` and confirm 2,000 rows.
 4. **Build the clean table:** run the rest of `01_schema_and_setup.sql` to build `Customer_Clean`, validate it, and create the index. The raw table is never modified.
 5. **Run the analysis:** run `02_rfm_analysis_and_insights.sql` to build the RFM view and view business insights.
+
 
 ---
 *Created by Poomrat Thanapasee | Connect with me on [LinkedIn](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)*
