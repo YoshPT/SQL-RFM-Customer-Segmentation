@@ -44,7 +44,7 @@ SELECT
     -- นำคะแนนมารวมกันเป็นรหัส เช่น 555, 142
     CONCAT(R_Score, F_Score, M_Score) AS RFM_Score,
     
-    -- จัด Segment ตามหลักเศรษฐศาสตร์พฤติกรรมลูกค้า
+    -- จัด Segment ตามหลักเทคนิคทางการตลาด
     CASE 
         WHEN R_Score = 5 AND F_Score IN (4, 5) AND M_Score IN (4, 5) THEN 'Champions'
         WHEN R_Score IN (3, 4) AND F_Score IN (4, 5) AND M_Score IN (4, 5) THEN 'Loyal Customers'
