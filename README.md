@@ -1,8 +1,10 @@
-# 📊 Customer Segmentation using RFM Analysis (SQL)
+# 📊 Customer Segmentation using RFM Analysis (SQL & Tableau)
 
-> **A SQL project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model.**
+> **A SQL and Tableau project demonstrating data extraction, transformation, and customer behavior analysis using the RFM (Recency, Frequency, Monetary) model, with a dashboard that turns the segments into business actions.**
+
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white)
+![Dashboard](https://img.shields.io/badge/Dashboard-Tableau-E97627?logo=tableau&logoColor=white)
 ![Model](https://img.shields.io/badge/Model-RFM%20Analysis-blueviolet)
 ![Data](https://img.shields.io/badge/Data-Kaggle%20(public)-20BEFF?logo=kaggle&logoColor=white)
 ![Scope](https://img.shields.io/badge/Dataset-2,000%20transactions%20%7C%20812%20customers-green)
@@ -16,6 +18,7 @@
 - [Data Source](#-data-source)
 - [Technical Skills Demonstrated](#-technical-skills-demonstrated)
 - [Project Structure & Workflow](#-project-structure--workflow)
+- [Dashboard (Tableau)](#-dashboard-tableau)
 - [Key Business Insights](#-key-business-insights)
 - [Applying This to Financial Services](#-applying-this-to-financial-services)
 - [Limitations & Future Improvements](#-limitations--future-improvements)
@@ -31,7 +34,7 @@ To segment customers based on their purchasing behavior. This allows the marketi
 
 ## 💡 Background
 
-With a minor in Marketing, I've built brand marketing plans and STP (Segmentation, Targeting, Positioning) analyses as academic coursework. This project applies the same segmentation idea to a raw retail transaction dataset, using SQL to clean the data and build behavioral segments through RFM analysis.
+With a minor in Marketing, I've built brand marketing plans and STP (Segmentation, Targeting, Positioning) analyses as academic coursework. This project applies the same segmentation idea to a raw retail transaction dataset, using SQL to clean the data and build behavioral segments through RFM analysis, then Tableau to present the results as a one-page dashboard.
 
 ---
 
@@ -54,14 +57,17 @@ The dataset used in this project is publicly available on Kaggle. It contains tr
 | **Data Wrangling** | Type Casting, String Manipulation, Date Standardization, Data Validation |
 | **SQL** | Window Functions (`CUME_DIST`, `SUM() OVER`), Common Table Expressions (CTEs), Subqueries |
 | **Business Intelligence** | Data Aggregation, Customer Cohort Segmentation |
+| **Data Visualization** | Tableau dashboard design: KPI cards, segment bar charts, log-scale scatter plot, ranked win-back list |
 
 ---
 
 ## 📂 Project Structure & Workflow
 
 ```
-01_schema_and_setup.sql              →  Data cleaning & preprocessing
-02_rfm_analysis_and_insights.sql     →  RFM modeling & insights
+01_schema_and_setup.sql               →  Data cleaning & preprocessing
+02_rfm_analysis_and_insights.sql      →  RFM modeling & insights
+RFM_Customer_Segmentation.twbx        →  Tableau dashboard
+images/RFM_Customer_Segmentation.png  →  Dashboard preview image
 ```
 
 ### 📄 `01_schema_and_setup.sql` (Data Cleaning & Preprocessing)
@@ -96,16 +102,54 @@ Customers were categorized into strategic groups based on their RFM scores:
 
 ---
 
+## 📈 Dashboard (Tableau)
+
+A one-page Tableau dashboard built from the segmentation output (`vw_customer_segmentation`). It turns the SQL results into something a sales or marketing team can scan in a minute: how big each segment is, how much revenue it brings, and which at-risk accounts to call first.
+
+![RFM Customer Segmentation dashboard](RFM_Customer_Segmentation.png)
+
+🔗 **Live version:** [View on Tableau Public](YOUR_TABLEAU_PUBLIC_LINK)
+
+| Panel | What it shows |
+|---|---|
+| **KPI cards** | 812 customers, 59.85B total revenue, 69.8% of revenue from Champions + Loyal, and 4.69B of revenue sitting in the At Risk segment |
+| **Customers vs. revenue by segment** | Each segment's share of customers next to its share of revenue, to show how concentrated the value is |
+| **Spend vs. recency** | One dot per customer: x = days since last order, y = total spend (log scale), dot size = number of orders, color = segment |
+| **Top 10 at-risk accounts to win back** | At Risk customers ranked by total spend, with days since last order and order count, as a call list for sales |
+| **Key findings** | Three plain-language takeaways for the business |
+
+Segment share of customers vs. revenue (as shown in the dashboard):
+
+| Segment | % of customers | % of revenue |
+|---|---|---|
+| Loyal Customers | 8.6% | 45.2% |
+| Champions | 6.4% | 24.6% |
+| Regular Customers | 37.7% | 14.8% |
+| At Risk | 7.4% | 7.8% |
+| Lost / Hibernating | 32.6% | 6.4% |
+| New Customers | 7.3% | 1.2% |
+
+Reading notes:
+
+- **Units:** M = million and B = billion, in the dataset's currency units (the currency is not specified).
+- **Log scale:** the spend axis in the scatter plot is logarithmic so that accounts above 1,000M and accounts below 10M are visible together. Vertical distances are not proportional to differences in spend.
+- **Colors:** segment colors are the same in the bar chart and the scatter plot.
+- **Coverage:** the dashboard covers the headline concentration finding and insight 1 (who to contact first). Insights 2-5 (product mix, regions, order value, first-purchase timing) are in the SQL output only.
+
+---
+
 ## 💡 Key Business Insights
 
 > [!IMPORTANT]
 > **Champions and Loyal customers make up just 15.0% of customers (122) but generate 69.8% of revenue.**
+>
+> At the other end, Regular and Lost / Hibernating customers make up ~70% of customers but only ~21% of revenue.
 
 Segmentation then answers five business questions:
 
 | # | Question | Finding | Recommended Action |
 |---|----------|---------|--------------------|
-| 1 | Who should sales contact first? | 60 customers are "At Risk", and the top 3 accounts make up ~54% of the segment's revenue | Personal outreach to Customer-180, Customer-074, Customer-663 |
+| 1 | Who should sales contact first? | 60 customers are "At Risk" (7.4% of customers, 4.69B or 7.8% of revenue), and the top 3 accounts make up ~54% of the segment's revenue | Personal outreach to Customer-180, Customer-074, Customer-663 (see the win-back list in the [dashboard](#-dashboard-tableau)) |
 | 2 | What do Champions buy? | Electronics drives 68.2% of Champions' revenue, while Office Supplies is 20.1% of their orders but only 2.1% of revenue | Bundle Office Supplies as an add-on |
 | 3 | Where are we losing customers? | "Lost" share is highest in Taunggyi (40.3%), Naypyitaw (39.7%), Bago (37.4%) vs. Yangon (25.5%), Mandalay (26.8%) | Investigate operations in the high-churn regions |
 | 4 | Do Champions spend more per order? | AOV is ~4.1x that of Regular customers (51.1M vs 12.4M) | Test bundles and upsell offers to lift order value among Regular customers, avoid blanket discounts for Champions, who already spend more per order |
@@ -155,9 +199,15 @@ What would need to change:
 - **Regional shares can swing with small groups:** Insight 3 reports percentages of each region's customers, so a region with few customers can show a large share from just a handful of people. Read the percentages together with the customer counts.
 - **First-purchase trend (insight 5):** January may look inflated because customers who bought before 2025 are counted as first-time buyers. With a finite customer base, new buyers also decline naturally over time, so monthly differences are not proof of seasonality.
 
+### Dashboard
+
+- **Win-back list ranks by total spend only:** The top 3 accounts are above 400M, while the other seven are each below 80M, so the list is dominated by a few large accounts. Ranking by recency or by RFM score would give a different call list.
+- **Partial coverage:** The dashboard shows insight 1 and the revenue concentration, not insights 2-5.
+- **Log-scale spend axis:** Good for seeing small and large accounts together, but it compresses the visual gap between very large and mid-sized accounts.
+
 ### Future improvements
 
-- Build a Power BI/Tableau dashboard for the segments.
+- Extend the Tableau dashboard with region and product-category views (insights 2 and 3) and filters.
 - Split "Regular Customers" into finer segments (e.g., Potential Loyalists, Need Attention).
 - Estimate customer lifetime value using profit data.
 
@@ -170,7 +220,7 @@ What would need to change:
 3. **Import the data:** import `raw_rfm_sales_transactions_(V2).csv` into `Customer_DB` and confirm 2,000 rows.
 4. **Build the clean table:** run the rest of `01_schema_and_setup.sql` to build `Customer_Clean`, validate it, and create the index. The raw table is never modified.
 5. **Run the analysis:** run `02_rfm_analysis_and_insights.sql` to build the RFM view and view business insights.
-
+6. **View the dashboard:** open `RFM_Customer_Segmentation.twbx` in Tableau Public or Tableau Desktop, or use the [live version](YOUR_TABLEAU_PUBLIC_LINK). To rebuild it, connect Tableau to the `vw_customer_segmentation` view in MySQL (or export the view to CSV and connect to the file).
 
 ---
 *Created by Poomrat Thanapasee | Connect with me on [LinkedIn](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)*
