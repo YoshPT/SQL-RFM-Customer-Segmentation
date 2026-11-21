@@ -104,7 +104,7 @@ Customers were categorized into strategic groups based on their RFM scores:
 
 ## 📈 Dashboard (Tableau)
 
-A one-page Tableau dashboard built from the segmentation output (`vw_customer_segmentation`). It turns the SQL results into something a sales or marketing team can scan in a minute: how big each segment is, how much revenue it brings, and which at-risk accounts to call first.
+A one-page Tableau dashboard built from the segmentation output (`rfm_segments.csv`, exported from the `vw_customer_segmentation` view). It turns the SQL results into something a sales or marketing team can scan in a minute: how big each segment is, how much revenue it brings, and which at-risk accounts to call first.
 
 ![RFM Customer Segmentation dashboard](RFM_Customer_Segmentation.png)
 
@@ -220,6 +220,6 @@ What would need to change:
 3. **Import the data:** import `raw_rfm_sales_transactions_(V2).csv` into `Customer_DB` and confirm 2,000 rows.
 4. **Build the clean table:** run the rest of `01_schema_and_setup.sql` to build `Customer_Clean`, validate it, and create the index. The raw table is never modified.
 5. **Run the analysis:** run `02_rfm_analysis_and_insights.sql` to build the RFM view and view business insights.
-6. **View the dashboard:** open `RFM_Customer_Segmentation.twbx` in Tableau Public or Tableau Desktop, or use the [live version](https://public.tableau.com/views/RFMCustomerSegmentation_17952664681280/RFMCustomerSegmentation). To rebuild it, connect Tableau to the `vw_customer_segmentation` view in MySQL (or export the view to CSV and connect to the file).
+6. **View the dashboard:** open `RFM_Customer_Segmentation.twbx` in Tableau Public or Tableau Desktop, or use the [live version] To rebuild it, export the `vw_customer_segmentation` view to `rfm_segments.csv` and connect Tableau to that file.(https://public.tableau.com/views/RFMCustomerSegmentation_17952664681280/RFMCustomerSegmentation). To rebuild it, connect Tableau to the `vw_customer_segmentation` view in MySQL (or export the view to CSV and connect to the file).
 ---
 *Created by Poomrat Thanapasee | Connect with me on [LinkedIn](https://www.linkedin.com/in/poomrat-thanapasee-6a99443b3/)*
